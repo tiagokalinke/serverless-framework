@@ -8,12 +8,7 @@ RUN apt-get update -y && \
   openjdk-8-jdk && \
   rm -rf /var/lib/apt/lists/*
 
-RUN groupadd serverless && \
-  useradd serverless -g serverless -s /bin/bash --create-home
-
-USER serverless
-
-ENV NVM_DIR /home/serverless/.nvm
+ENV NVM_DIR /usr/local/lib/.nvm
 ENV NODE_VERSION 6.10.0
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash && \
@@ -26,7 +21,7 @@ ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 ENV SLS_DEBUG *
 
-WORKDIR /var/www/serverless
+WORKDIR /usr/local/src/project
 
 RUN npm install -g serverless && \
   npm install -g serverless-offline && \
