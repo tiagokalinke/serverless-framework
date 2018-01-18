@@ -14,4 +14,6 @@ $ docker run {IMAGE_NAME} sls dynamodb install
 ```
 
 ## Up
+```shell
 $ docker run {IMAGE_NAME} sls offline start
+```
