@@ -9,13 +9,28 @@
 ## Intallation
 Before to up this image, run the command:
 ```shell
-$ docker run {IMAGE_NAME} npm install
-$ docker run {IMAGE_NAME} sls dynamodb install
+$ docker run -e SLS_PORT=3000 -e DDB_PORT=8000 {IMAGE_NAME} npm install
+$ docker run -e SLS_PORT=3000 -e DDB_PORT=8000 {IMAGE_NAME} sls dynamodb install
 ```
 
-### Ports:
-* **Serverless Offline**: 3000
-* **DynamoDB**: 8000
+## Requirement enviroments
+Name | Description
+-----|------------
+**SLS_PORT** | Serverless Offline Port
+**DDB_PORT** | DynamoDB Local Port
 
-### Endpoints:
-**DynamoDB Shell**: http://localhost:8000/shell
+
+#### docker-compose.yml file
+```yaml
+version: '3'
+
+services:
+  SERVICE_NAME:
+    image: tiagokalinke/docker-serverless-framework
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    environment:
+      - SLS_PORT=3000
+      - DDB_PORT=8000
+```
