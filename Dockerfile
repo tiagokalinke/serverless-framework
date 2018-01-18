@@ -31,10 +31,3 @@ WORKDIR /var/www/serverless
 RUN npm install -g serverless && \
   npm install -g serverless-offline && \
   npm install -g serverless-dynamodb-local
-
-USER root
-
-EXPOSE ${SLS_PORT}
-EXPOSE ${DDB_PORT}
-
-CMD ["sls", "offline", "start", "--host", "0.0.0.0", "${SLS_PORT}"]
